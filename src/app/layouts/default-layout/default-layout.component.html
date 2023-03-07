@@ -1,0 +1,21 @@
+<div>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav mode="side" class="sidenav" fixedInViewport opened>
+            <mat-toolbar>Delta Brains</mat-toolbar>
+            <mat-nav-list>
+                <a routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" mat-list-item [routerLink]="'/users/create'">Create Account</a
+        >
+        <a
+          routerLinkActive="active-link"
+          mat-list-item
+          [routerLink]="'/users'"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Account Management</a
+        >
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="layout-page">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

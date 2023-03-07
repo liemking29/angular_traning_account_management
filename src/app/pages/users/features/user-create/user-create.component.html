@@ -1,0 +1,62 @@
+<div class="create-account">
+    <mat-card class="form-create-account">
+        <mat-card-actions novalidate class="mat-layout">
+            <mat-card-content class="mat-layout-container">
+                <p>Create Account</p>
+                <div class="card__img">
+                    <img *ngIf="data.gender == gender.MALE" src="assets/images/avatar_male.png" alt="avatar" />
+                    <img *ngIf="data.gender == gender.FEMALE" src="assets/images/avatar_female.jpg" alt="avatar" />
+                </div>
+                <div class="input-form">
+                    <mat-form-field class="full-width">
+                        <mat-label>Account name</mat-label>
+                        <input matInput [(ngModel)]="data.account" (blur)="validateAccount($event)" (keyup)="validateAccount($event)" />
+                    </mat-form-field>
+                    <div class="input__error">{{ error.account }}</div>
+                </div>
+                <div class="input-form">
+                    <mat-form-field class="full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput [(ngModel)]="data.name" (blur)="validateName($event)" (keyup)="validateName($event)" />
+                    </mat-form-field>
+                    <div class="input__error">{{ error.name }}</div>
+                </div>
+                <div class="input-form">
+                    <mat-form-field appearance="fill" class="full-width">
+                        <mat-label>DOB</mat-label>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="data.dob" />
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="gender__layout">
+                    <mat-radio-group aria-label="gender" class="full-width" [(ngModel)]="data.gender">
+                        <label>Gender:</label>
+                        <mat-radio-button [value]="gender.MALE">Nam</mat-radio-button>
+                        <mat-radio-button [value]="gender.FEMALE">Nữ</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="input-form">
+                    <mat-form-field class="full-width">
+                        <mat-label>Address</mat-label>
+                        <input matInput [(ngModel)]="data.address" (blur)="validateAddress($event)" (keyup)="validateAddress($event)" />
+                    </mat-form-field>
+                    <div class="input__error">{{ error.address }}</div>
+                </div>
+                <div class="input-form">
+                    <mat-form-field class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="data.email" (blur)="validateEmail($event)" (keyup)="validateEmail($event)" />
+                    </mat-form-field>
+                    <div class="input__error">{{ error.email }}</div>
+                </div>
+            </mat-card-content>
+            <div class="btn">
+                <button mat-flat-button color="primary" (click)="save()" [disabled]="!isValid">Save</button>
+                <button mat-flat-button color="accent" (click)="cancel()">
+          Cancel
+        </button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,47 @@
+<div class="users-page page">
+    <div class="page--title">Account Management</div>
+    <div class="page--header">
+        <div class="page--tools">
+            <div>
+                <input class="search__user" type="search" placeholder="Search" (keyup)="onSearch($event)" />
+            </div>
+            <mat-slide-toggle [checked]="checked" (toggleChange)="checked = !checked" color="primary">{{ checked ? "Card" : "List" }}</mat-slide-toggle>
+        </div>
+        <a href="/users/create"><button mat-flat-button color="primary">Create Account<mat-icon>add_circle</mat-icon></button></a
+    >
+  </div>
+</div>
+<div class="page--container">
+  <div [ngClass]="checked ? 'cards' : 'list'">
+    <div class="user-list__header" *ngIf="!checked">
+      <div class="user-list__name">Name</div>
+      <div class="user-list__email">Email</div>
+      <div class="user-list__date">DOB</div>
+      <div class="user-list__gender">Gender</div>
+      <div class="user-list__address">Address</div>
+      <div class="user-list__actions"></div>
+    </div>
+
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+      [ngClass]="checked ? 'cards--box' : 'list--box'"
+    >
+      <div *ngFor="let account of accountListSearching">
+        <div cdkDrag>
+          <app-user-card
+            *ngIf="checked"
+            [data]="account"
+            (removed)="removed($event)"
+          ></app-user-card>
+          <app-user-list
+            *ngIf="!checked"
+            [data]="account"
+            (removed)="removed($event)"
+          ></app-user-list>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-pagination></app-pagination>
+</div>
